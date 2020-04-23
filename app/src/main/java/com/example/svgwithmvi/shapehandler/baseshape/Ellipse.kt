@@ -1,7 +1,7 @@
 package com.example.svgwithmvi.shapehandler.baseshape
 
 import com.example.svgdemo.shapehandler.Shape
-import com.example.svgwithmvi.shapehandler.SVG.SVGSharedData
+import com.example.svgwithmvi.shapehandler.svg.SVGSharedData
 
 class Ellipse(private var radiusX: Float,
               private var radiusY: Float,
@@ -148,6 +148,5 @@ class Ellipse(private var radiusX: Float,
             .replaceFirst("width?", "" + (((centerX + radiusX)) + 20))
         svgFile = svgFile.replaceFirst("body?", body)
         svgFile = svgFile.replaceFirst("at?", svgAttributes ?: "")
-        //Log.d("SVGString = ", svgFile)
     }
 }

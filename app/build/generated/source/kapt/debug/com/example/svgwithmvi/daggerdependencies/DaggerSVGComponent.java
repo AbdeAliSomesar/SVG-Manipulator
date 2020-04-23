@@ -2,9 +2,9 @@
 package com.example.svgwithmvi.daggerdependencies;
 
 import com.example.svgwithmvi.model.SVGModel;
-import com.example.svgwithmvi.shapehandler.SVG.SVGShapeGenerator_Factory;
-import com.example.svgwithmvi.shapehandler.SVG.SVGShapeManager;
-import com.example.svgwithmvi.shapehandler.SVG.SVGShapeManager_Factory;
+import com.example.svgwithmvi.shapehandler.svg.SVGShapeGenerator_Factory;
+import com.example.svgwithmvi.shapehandler.svg.SVGShapeManager;
+import com.example.svgwithmvi.shapehandler.svg.SVGShapeManager_Factory;
 import com.example.testproject.shapehandler.ShapeManager;
 import dagger.internal.DoubleCheck;
 import dagger.internal.Preconditions;

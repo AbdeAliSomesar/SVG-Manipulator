@@ -1,6 +1,6 @@
 package com.example.svgdemo.shapehandler
 
-import com.example.svgwithmvi.shapehandler.SVG.SVGSharedData
+import com.example.svgwithmvi.shapehandler.svg.SVGSharedData
 
 interface Shape {
 

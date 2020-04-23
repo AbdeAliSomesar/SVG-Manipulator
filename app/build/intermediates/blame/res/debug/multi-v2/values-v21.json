@@ -4,6 +4,25 @@
             "outputFile": "C:\\Users\\Admin\\Downloads\\SVGWithMVI\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\d1242cd62971696b03f70b5953e3deb1\\jetified-leakcanary-android-core-2.2\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,6",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,313",
+                        "endLines": "5,9",
+                        "endColumns": "10,10",
+                        "endOffsets": "308,535"
+                    },
+                    "to": {
+                        "startLines": "288,292",
+                        "startColumns": "4,4",
+                        "startOffsets": "20942,21200",
+                        "endLines": "291,295",
+                        "endColumns": "10,10",
+                        "endOffsets": "21195,21422"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\563be99a7f8ba6717b67ce50a8a4b6a6\\core-1.1.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",

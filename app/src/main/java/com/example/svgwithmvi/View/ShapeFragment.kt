@@ -74,5 +74,4 @@ class ShapeFragment : Fragment(){
         super.onDestroyView()
         disposable.dispose()
     }
-
 }

@@ -25,19 +25,17 @@ import com.example.svgwithmvi.View.maintaskrecyclerview.MainTasksRecyclerViewAda
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchListener, GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener{
+class MainActivity : AppCompatActivity(), MainRecyclerViewClickListener, OnTouchListener,
+    GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+    var TAG: String = "MainActivity"
 
-
-    var TAG:String = "MainActivity"
-
-
-    private var x:Float? =null
-    private var y:Float? =null
+    private var x: Float? = null
+    private var y: Float? = null
     var fragmentManager: FragmentManager = supportFragmentManager
     private lateinit var gestureDetector: GestureDetector
-    private lateinit var onTouchImagePublisher:PublishSubject<InitialEventsIntent>
+    private lateinit var onTouchImagePublisher: PublishSubject<InitialEventsIntent>
     private lateinit var liveDataForMainImageView: MutableLiveData<Bitmap>
-    private lateinit var scaleDetector:ScaleGestureDetector
+    private lateinit var scaleDetector: ScaleGestureDetector
 
     private lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,44 +48,45 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
         liveDataForMainImageView = viewModel.mainImageViewBitmap
         liveDataForMainImageView.observe(
             this,
-            Observer {mainImageView.setImageBitmap(it)}
+            Observer { mainImageView.setImageBitmap(it) }
         )
         mainImageView.setOnTouchListener(this)
         mainScrollViewForImage.setOnTouchListener(this)
         mainVerticalScrollViewForImage.setOnTouchListener(this)
-        gestureDetector = GestureDetector(this,this)
+        gestureDetector = GestureDetector(this, this)
         onTouchImagePublisher = viewModel.onTouchImagePublisher
-        scaleDetector = ScaleGestureDetector(this,
+        scaleDetector = ScaleGestureDetector(
+            this,
             ScaleListener(onTouchImagePublisher)
         )
 
-        mainRecyclerViewForTasksList.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        mainRecyclerViewForTasksList.adapter = MainTasksRecyclerViewAdapter(viewModel.mainImagesData.getList(),this)
+        mainRecyclerViewForTasksList.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        mainRecyclerViewForTasksList.adapter =
+            MainTasksRecyclerViewAdapter(viewModel.mainImagesData.getList(), this)
 
     }
-    override fun onClick(position:Int)
-    {
-        when(viewModel.mainImagesData.getImageId(position))
-        {
-            R.drawable.shapes_24dp ->{
+
+    override fun onClick(position: Int) {
+        when (viewModel.mainImagesData.getImageId(position)) {
+            R.drawable.shapes_24dp -> {
                 val tag = "shapes"
-                if(!removeFragment(tag))
-                    addFragment(tag,ShapeFragment())
+                if (!removeFragment(tag))
+                    addFragment(tag, ShapeFragment())
             }
-            R.drawable.action_24dp ->{
+            R.drawable.action_24dp -> {
                 val tag = "actions"
-                if(!removeFragment(tag))
-                    addFragment(tag,ActionsFragment())
+                if (!removeFragment(tag))
+                    addFragment(tag, ActionsFragment())
             }
         }
     }
 
-    private fun removeFragment(tag:String):Boolean
-    {
+    private fun removeFragment(tag: String): Boolean {
         val fragment = fragmentManager.findFragmentByTag(tag)
         fragment?.let {
             fragmentManager.beginTransaction().remove(it).commit()
-            return  true
+            return true
         }
         return false
     }
@@ -103,7 +102,7 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        if(event?.action == MotionEvent.ACTION_UP)
+        if (event?.action == MotionEvent.ACTION_UP)
             onTouchImagePublisher.onNext(InitialEventsIntent.TouchEvents.OnActionUp)
         scaleDetector.onTouchEvent(event)
         gestureDetector.onTouchEvent(event)
@@ -120,7 +119,6 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
                 )
             )
         }
-       // Log.d(TAG,"OnShowPress")
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
@@ -131,14 +129,10 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
                 )
             )
         }
-      //  Log.d(TAG,"OnSingleTapUP")
         return true
     }
 
     override fun onDown(e: MotionEvent?): Boolean {
-       // onTouchImagePublisher.onNext(InitialEventsIntent.OnDrag(e!!))
-
-      //  Log.d(TAG,"OnDown")
         return true
     }
 
@@ -148,7 +142,6 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
         velocityX: Float,
         velocityY: Float
     ): Boolean {
-      ///  Log.d(TAG,"OnFling")
         return true
     }
 
@@ -158,8 +151,6 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
         distanceX: Float,
         distanceY: Float
     ): Boolean {
-        Log.d(TAG,"OnScroll")
-        Log.d("TestOnScale", "event1 = $e1 event2 = $e2 d1 = $distanceX dy = $distanceY")
         e1?.let {
             onTouchImagePublisher.onNext(
                 InitialEventsIntent.TouchEvents.OnDrag(
@@ -170,7 +161,6 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
                 )
             )
         }
-       // onTouchImagePublisher.onNext(InitialEventsIntent.TouchEvents.OnDrag(e1!!,e2!!))
         return true
     }
 
@@ -182,13 +172,8 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
                     true
                 )
             )
-            //onTouchImagePublisher.onNext(InitialEventsIntent.TouchEvents.SingleTap(it))
         }
-      //  Log.d(TAG,"OnLongPress")
     }
-
-
-           // DoubleTap
 
     override fun onDoubleTap(e: MotionEvent?): Boolean {
         e?.let {
@@ -198,28 +183,20 @@ class MainActivity : AppCompatActivity(),MainRecyclerViewClickListener, OnTouchL
                 )
             )
         }
-      //  Log.d(TAG,"onDoubleTap")
         return true
     }
 
     override fun onDoubleTapEvent(e: MotionEvent?): Boolean {
-        e?.let {
-            //onTouchImagePublisher.onNext(InitialEventsIntent.TouchEvents.SingleTap(it))
-        }
-      //  Log.d(TAG,"onDoubleTapEvent")
         return true
     }
 
     override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
-      //  Log.d(TAG,"onSingleTapConfirmed")
         return true
     }
 
-    private class ScaleListener(var onTouchImagePublisher:PublishSubject<InitialEventsIntent>): ScaleGestureDetector.SimpleOnScaleGestureListener()
-    {
+    private class ScaleListener(var onTouchImagePublisher: PublishSubject<InitialEventsIntent>) :
+        ScaleGestureDetector.SimpleOnScaleGestureListener() {
         override fun onScale(detector: ScaleGestureDetector?): Boolean {
-         //   Log.d("MainActivity","OnScale :- ${detector?.scaleFactor}")
-
             detector?.let {
                 onTouchImagePublisher.onNext(
                     InitialEventsIntent.TouchEvents.Pinch.UpdateHeight(

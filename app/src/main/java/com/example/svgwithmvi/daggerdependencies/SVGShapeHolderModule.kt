@@ -1,6 +1,6 @@
 package com.example.svgwithmvi.daggerdependencies
 
-import com.example.svgwithmvi.shapehandler.SVG.SVGShapeHolder
+import com.example.svgwithmvi.shapehandler.svg.SVGShapeHolder
 import com.example.testproject.shapehandler.Converter
 import com.example.testproject.shapehandler.ShapeHolder
 import dagger.Module

@@ -1,7 +1,7 @@
 package com.example.svgwithmvi.daggerdependencies
 
-import com.example.svgwithmvi.shapehandler.SVG.SVGShapeGenerator
-import com.example.svgwithmvi.shapehandler.SVG.SVGShapeManager
+import com.example.svgwithmvi.shapehandler.svg.SVGShapeGenerator
+import com.example.svgwithmvi.shapehandler.svg.SVGShapeManager
 import com.example.testproject.shapehandler.ShapeGenerator
 import com.example.testproject.shapehandler.ShapeManager
 import dagger.Binds

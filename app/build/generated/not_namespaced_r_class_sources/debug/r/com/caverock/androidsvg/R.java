@@ -13,12 +13,12 @@ public final class R {
         private attr() {}
 
         public static final int css = 0x7f020066;
-        public static final int svg = 0x7f02012a;
+        public static final int svg = 0x7f02012b;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] SVGImageView = { 0x7f020066, 0x7f02012a };
+        public static final int[] SVGImageView = { 0x7f020066, 0x7f02012b };
         public static final int SVGImageView_css = 0;
         public static final int SVGImageView_svg = 1;
     }

@@ -105,12 +105,23 @@ class SVGModel @Inject constructor(private val shapeProvider: ShapeManager) {
     }
     fun singleTap(x:Float, y:Float):Bitmap
     {
+
+        selectedArea?.let {
+                if (x >= it[0] && x <= it[2] && y >= it[1] && y <= it[3]) {
+                    return getBitmapWitArea()
+                }
+            }
         selectedArea = shapeProvider.selectShape(x,y)
 //        Log.d(TAG,"onSingleTap")
         return getBitmapWitArea()
     }
     fun onTouchShape(x:Float, y:Float):Bitmap
     {
+        selectedArea?.let {
+            if (x >= it[0] && x <= it[2] && y >= it[1] && y <= it[3]) {
+                return getBitmapWitArea()
+            }
+        }
         selectedArea = shapeProvider.selectShape(x,y)
 //        Log.d(TAG,"onTouchShape")
         return getBitmapWitArea()
